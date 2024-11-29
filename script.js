@@ -75,4 +75,10 @@
             correctAnswer: 'Cristiano Ronaldo'
         }
     ];
-  
+    const questionsContainer = document.querySelector('#questions-container');
+    const nextBtn = document.querySelector('#next-btn');
+    const resultBox = document.querySelector('#result-box');
+    const restartBtn = document.querySelector('#restart-btn');
+    const scoreElement = document.querySelector('#score');
+    const detailedResultsElement = document.querySelector('#detailed-results');
+    const themeToggleBtn = document.querySelector('#theme-toggle-btn');
