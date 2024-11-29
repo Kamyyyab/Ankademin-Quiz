@@ -87,3 +87,28 @@
     let score = 0;
     let userAnswers = [];
 
+    const renderQuestion = (index) => {
+        const question = questions[index];
+        questionsContainer.innerHTML = `
+            <legend>${question.text}</legend>
+            ${question.options.map((option, optionIndex) => `
+                <label>
+                    <input type="${question.type}" 
+                           name="question-${index}" 
+                           value="${option}"
+                           aria-label="${option}"> ${option}
+                </label>
+            `).join('')}
+        `;
+    
+        nextBtn.disabled = true;
+        addAnswerListeners(index);
+    };
+    const addAnswerListeners = (index) => {
+        const inputs = document.querySelectorAll(`input[name="question-${index}"]`);
+        inputs.forEach(input => {
+            input.addEventListener('change', () => {
+                nextBtn.disabled = false;
+            });
+        });
+    };
