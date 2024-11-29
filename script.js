@@ -82,3 +82,8 @@
     const scoreElement = document.querySelector('#score');
     const detailedResultsElement = document.querySelector('#detailed-results');
     const themeToggleBtn = document.querySelector('#theme-toggle-btn');
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = [];
+
