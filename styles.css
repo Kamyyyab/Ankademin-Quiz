@@ -24,3 +24,18 @@ legend {
     font-weight: bold;
     color: #007bff;
 }
+input[type="radio"], 
+input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+label:hover {
+    color: #007bff;
+}
