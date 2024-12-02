@@ -162,4 +162,14 @@
             </p>
         `).join('');
     };
+    const resultTextElement = document.createElement('p');
+    resultTextElement.textContent = resultMessage;
+    resultTextElement.style.color = resultColor;
+    resultBox.appendChild(resultTextElement);
+
+    detailedResultsElement.innerHTML = userAnswers.map((answer, index) =>  `
+        <p class="${answer.isCorrect ? 'correct' : 'incorrect'}">
+            Fråga ${index + 1}: ${answer.isCorrect ? '✓' : '✗'} ${answer.question}
+        </p>
+    `).join('');
     
