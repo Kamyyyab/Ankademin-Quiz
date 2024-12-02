@@ -112,3 +112,54 @@
             });
         });
     };
+    const checkAnswer = (index) => {
+        const question = questions[index];
+        const selectedInputs = document.querySelectorAll(`input[name="question-${index}"]:checked`);
+    
+        let isCorrect = false;
+        if (question.type === 'radio') {
+            isCorrect = selectedInputs[0]?.value === question.correctAnswer;
+        } else if (question.type === 'checkbox') {
+            const selectedValues = Array.from(selectedInputs).map(input => input.value);
+            isCorrect = selectedValues.length === question.correctAnswers.length &&
+                       selectedValues.every(value => question.correctAnswers.includes(value));
+        }
+    
+        userAnswers.push({
+            question: question.text,
+            isCorrect: isCorrect
+        });
+    
+        return isCorrect;
+    };
+    const showResults = () => {
+        questionsContainer.innerHTML = '';
+        nextBtn.style.display = 'none';
+        resultBox.classList.remove('hidden');
+        scoreElement.textContent = `Du fick ${score} av ${questions.length} poäng!`;
+        const percentage = (score / questions.length) * 100;
+        let resultMessage = '';
+        let resultColor = '';
+    
+        if (percentage < 50) {
+            resultMessage = 'Underkänt';
+            resultColor = 'red';
+        } else if (percentage >= 50 && percentage <= 75) {
+            resultMessage = 'Bra';
+            resultColor = 'orange';
+        } else {
+            resultMessage = 'Riktigt bra jobbat!';
+            resultColor = 'green';
+        }
+        const resultTextElement = document.createElement('p');
+        resultTextElement.textContent = resultMessage;
+        resultTextElement.style.color = resultColor;
+        resultBox.appendChild(resultTextElement);
+    
+        detailedResultsElement.innerHTML = userAnswers.map((answer, index) => `
+            <p class="${answer.isCorrect ? 'correct' : 'incorrect'}">
+                Fråga ${index + 1}: ${answer.isCorrect ? '✓' : '✗'} ${answer.question}
+            </p>
+        `).join('');
+    };
+    
