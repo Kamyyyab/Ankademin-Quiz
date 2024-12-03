@@ -172,4 +172,8 @@
             Fråga ${index + 1}: ${answer.isCorrect ? '✓' : '✗'} ${answer.question}
         </p>
     `).join('');
+   
+    themeToggleBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
     

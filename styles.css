@@ -39,3 +39,23 @@ label {
 label:hover {
     color: #007bff;
 }
+
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+#next-btn, #restart-btn, #theme-toggle-btn {
+    background-color: #007bff;
+    color: rgb(255, 255, 255);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+#next-btn:hover, #restart-btn:hover, #theme-toggle-btn:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+}
+
