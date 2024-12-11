@@ -5,16 +5,29 @@ body {
     margin: 0 auto;
     padding: 20px;
     transition: all 0.3s ease;
+
 }
+
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
 #quiz-container {
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: all 0.3s ease;
+    margin-top: 100px;
 }
+
+body.dark-mode #quiz-container {
+    background-color: #444;
+}
+
 fieldset {
-    border: 2px solid #007bff;
+    border: 2px solid #387ec9;
     border-radius: 5px;
     padding: 15px;
     margin-bottom: 15px;
@@ -22,8 +35,9 @@ fieldset {
 
 legend {
     font-weight: bold;
-    color: #007bff;
+    color: #387ec9;
 }
+
 input[type="radio"], 
 input[type="checkbox"] {
     margin-right: 10px;
@@ -40,11 +54,6 @@ label:hover {
     color: #007bff;
 }
 
-body.dark-mode {
-    background-color: #333;
-    color: #f4f4f4;
-}
-
 #next-btn, #restart-btn, #theme-toggle-btn {
     background-color: #007bff;
     color: rgb(255, 255, 255);
@@ -54,8 +63,29 @@ body.dark-mode {
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 #next-btn:hover, #restart-btn:hover, #theme-toggle-btn:hover {
     background-color: #0056b3;
     transform: scale(1.05);
 }
 
+#next-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+#next-btn:disabled:hover {
+    transform: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.correct {
+    color: green;
+}
+
+.incorrect {
+    color: red;
+}

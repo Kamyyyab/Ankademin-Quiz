@@ -86,7 +86,6 @@
     let currentQuestionIndex = 0;
     let score = 0;
     let userAnswers = [];
-
     const renderQuestion = (index) => {
         const question = questions[index];
         questionsContainer.innerHTML = `
@@ -104,6 +103,7 @@
         nextBtn.disabled = true;
         addAnswerListeners(index);
     };
+    
     const addAnswerListeners = (index) => {
         const inputs = document.querySelectorAll(`input[name="question-${index}"]`);
         inputs.forEach(input => {
@@ -112,6 +112,7 @@
             });
         });
     };
+    
     const checkAnswer = (index) => {
         const question = questions[index];
         const selectedInputs = document.querySelectorAll(`input[name="question-${index}"]:checked`);
@@ -132,6 +133,20 @@
     
         return isCorrect;
     };
+    
+    nextBtn.addEventListener('click', () => {
+        if (checkAnswer(currentQuestionIndex)) {
+            score++;
+        }
+    
+        currentQuestionIndex++;
+        if (currentQuestionIndex < questions.length) {
+            renderQuestion(currentQuestionIndex);
+        } else {
+            showResults();
+        }
+    });
+    
     const showResults = () => {
         questionsContainer.innerHTML = '';
         nextBtn.style.display = 'none';
@@ -151,6 +166,7 @@
             resultMessage = 'Riktigt bra jobbat!';
             resultColor = 'green';
         }
+    
         const resultTextElement = document.createElement('p');
         resultTextElement.textContent = resultMessage;
         resultTextElement.style.color = resultColor;
@@ -162,18 +178,23 @@
             </p>
         `).join('');
     };
-    const resultTextElement = document.createElement('p');
-    resultTextElement.textContent = resultMessage;
-    resultTextElement.style.color = resultColor;
-    resultBox.appendChild(resultTextElement);
-
-    detailedResultsElement.innerHTML = userAnswers.map((answer, index) =>  `
-        <p class="${answer.isCorrect ? 'correct' : 'incorrect'}">
-            Fråga ${index + 1}: ${answer.isCorrect ? '✓' : '✗'} ${answer.question}
-        </p>
-    `).join('');
-   
+    
+    
+    restartBtn.addEventListener('click', () => {
+        currentQuestionIndex = 0;
+        score = 0;
+        userAnswers = [];
+        resultBox.classList.add('hidden');
+        nextBtn.style.display = 'block';
+        renderQuestion(currentQuestionIndex);
+    });
+    
+    // Theme toggle
     themeToggleBtn.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
     });
+    
+    renderQuestion(currentQuestionIndex);
+    
+    
     
